@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: baihooBlog-prototype
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Administrator
+Implementation-Vendor-Id: com.baihoo.blog
+Build-Jdk: 1.8.0_151
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/baiHooBlog/baihooBlog-prototype
+Created-By: Maven Integration for Eclipse
+

@@ -1,0 +1,23 @@
+《=========================================================================》
+		异常一：org.springframework.validation.BeanPropertyBindingResult Exception
+			解决答案---- Answer：
+				public String insertdata(
+			    		@ModelAttribute("applicationForm") 
+			    		@Valid 
+			    		ApplicationFormBean   applicationFormBean,
+			   			 BindingResult result ); 
+			    注意：
+			    	method (@Valid  bean , BindingResult bindingResult ) 在Controllerc层在方法中前呼后应，两者必不可少
+			    	
+《=========================================================================》
+			Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; 
+			check the manual that corresponds to your MySQL server version for the right syntax to use near 'type=MyISAM' at line 1
+			解决答案---- Answer：
+				MySQL 方言版本問題---誘導出這個異常 Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'baihooblog.user_authority' doesn't exist
+				org.hibernate.dialect.MySQL5Dialect
+				org.hibernate.dialect.MySQL55Dialect
+				org.hibernate.dialect.MySQL57Dialect
+				
+《=========================================================================》			
+		java.lang.IllegalAccessException: Can not set static final boolean field com.baihoo.blog.anno.UsernameUnique.isvalidate to java.lang.Boolean
+		注意@Annotation 注解中的常量，默认是public static final 修饰类型

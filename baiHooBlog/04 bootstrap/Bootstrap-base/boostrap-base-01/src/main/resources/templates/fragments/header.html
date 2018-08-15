@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	th:fragment="header">
+<head>
+	<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width , initial-scale=1">
+<title>bootsrap in action</title>
+<link href="../../static/bootstrap/css/tether.min.css"
+	th:href="@{/bootstrap/css/tether.min.css}" rel="stylesheet">
+<!-- bootstrap css样式 -->
+<link href="../../static/bootstrap/css/bootstrap.min.css"
+	th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+<!-- 样式文字css样式 -->
+<link href="../../static/bootstrap/css/font-awesome.min.css" th:href="@{/bootstrap/css/font-awesome.min.css}" 
+	rel="stylesheet">
+<link href="../../static/bootstrap/css/nprogress.css" th:href="@{/bootstrap/css/nprogress.css}" 
+	rel="stylesheet">
+<link href="../../static/bootstrap/css/thinker-md.vendor.css" th:href="@{/bootstrap/css/thinker-md.vendor.css}" 
+	rel="stylesheet">
+<link href="../../static/bootstrap/css/bootstrap-tagsinput.css" th:href="@{/bootstrap/css/bootstrap-tagsinput.css}" 
+	rel="stylesheet">
+<link href="../../static/bootstrap/css/component-chosen.min.css" th:href="@{/bootstrap/css/component-chosen.min.css}" 
+	rel="stylesheet">
+<link href="../../static/bootstrap/css/toastr.min.css" th:href="@{/bootstrap/css/toastr.min.css}" 
+	rel="stylesheet">
+<!-- 图片编辑的css -->
+<link href="../../static/bootstrap/css/cropbox.css" th:href="@{/bootstrap/css/cropbox.css}" 
+	rel="stylesheet">
+<!-- 自定义的样式 -->
+<link href="../../static/bootstrap/css/style.css" th:href="@{/bootstrap/css/style.css}" 
+	rel="stylesheet">
+<link href="../../static/bootstrap/css/thymeleaf-bootstrap-paginator.css" th:href="@{/bootstrap/css/thymeleaf-bootstrap-paginator.css}"
+	rel="stylesheet">
+<link href="../../static/bootstrap/css/blog.css" th:href="@{/bootstrap/css/blog.css}" 
+	rel="stylesheet">
+</head>
+<body>
+	<nav class="navbar navbar-inverse bg-inverse navbar-toggleable-md">
+		<div class="container">
+			<button class="navbar-toggler navbar-toggler-right" type="button"
+				data-toggle="collapse" data-target="#navbarsContainer">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="/" th:href="@{~/}">baiHoo Blog</a>
+			<div class="collapse navbar-collapse" id="navbarsContainer">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<!-- @{~/user} 相对于服务器下面 --> <a class="nav-link"
+						th:href="@{~/users}">首页<span class="sr-only">(current)</span></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</body>
+</html>

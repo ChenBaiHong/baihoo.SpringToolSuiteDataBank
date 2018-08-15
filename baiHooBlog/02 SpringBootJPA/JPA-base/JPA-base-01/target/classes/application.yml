@@ -1,0 +1,14 @@
+spring:
+  thymeleaf:
+    encoding: UTF-8
+    cache: false #热部署静态文件，禁止缓存
+    mode: HTML5 #使用HTML5标准
+ #使用H2控制台
+  h2:
+    console:
+      enabled: true
+  #JPA
+  jpa:
+    hibernate:
+      ddl-auto: create-drop #ddl創建表或刪除表
+    show-sql: true  #輸出SQL語句

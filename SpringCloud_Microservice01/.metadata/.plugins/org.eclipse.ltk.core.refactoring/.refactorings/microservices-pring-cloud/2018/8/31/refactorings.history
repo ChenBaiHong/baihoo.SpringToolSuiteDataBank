@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;microservices-pring-cloud/docs/eureka官方説明&apos; to &apos;SpringCloud説明.readme&apos;" description="Rename resource &apos;eureka官方説明&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="docs/eureka官方説明" name="SpringCloud説明.readme" stamp="1533133849387" updateReferences="true"/>
+</session>

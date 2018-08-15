@@ -1,0 +1,3 @@
+INDEX VERSION 1.130
+F:\SpringToolSuite DataBank\baiHooBlog\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1727875376.index
+\mongodb-file-server\src\main\resources

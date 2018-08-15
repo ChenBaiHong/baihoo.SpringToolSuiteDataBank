@@ -1,0 +1,5 @@
+package com.baihoo.springboot.fileserver.common.criteria;
+
+public class Criteria {
+
+}

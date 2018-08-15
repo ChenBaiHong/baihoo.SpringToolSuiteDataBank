@@ -1,0 +1,13 @@
+《=========================================================================》
+		异常一：org.springframework.validation.BeanPropertyBindingResult Exception
+			解决答案---- Answer：
+				public String insertdata(
+			    		@ModelAttribute("applicationForm") 
+			    		@Valid 
+			    		ApplicationFormBean   applicationFormBean,
+			   			 BindingResult result ); 
+			    注意：
+			    	method (@Valid  bean , BindingResult bindingResult ) 在Controllerc层在方法中前呼后应，两者必不可少
+			    	
+《=========================================================================》
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'baihooblog.user_authority' doesn't exist

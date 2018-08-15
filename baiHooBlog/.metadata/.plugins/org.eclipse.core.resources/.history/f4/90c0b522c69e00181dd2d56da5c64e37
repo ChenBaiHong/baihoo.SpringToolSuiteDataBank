@@ -1,0 +1,10 @@
+package com.baihoo.springboot.common.criteria.dobj;
+
+/**
+ * 
+ * @author Administrator
+ *
+ */
+public class DataObject {
+
+}

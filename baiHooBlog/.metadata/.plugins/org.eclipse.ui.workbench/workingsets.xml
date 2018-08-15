@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workingSetManager>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1533125544395_0" label="BaiHooBlog" name="BaiHooBlog">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/baiHooBlog" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/baihooBlog-blog" type="4"/>
+<item elementID="=baihooBlog-prototype" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=baihooBlog-user" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1533191960235_3" label="01 Thymeleaf" name="01 Thymeleaf">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Thymeleaf-base" type="4"/>
+<item elementID="=thymeleaf-base-01" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1533214411898_5" label="02 SpringBootJPA" name="02 SpringBootJPA">
+<item elementID="=jpa-base-01" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JPA-base" type="4"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1533253312922_5" label="03 ElasticSearch" name="03 ElasticSearch">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/ElasticSearch-base" type="4"/>
+<item elementID="=elasticSearch-base-01" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1533344222822_6" label="04 bootstrap" name="04 bootstrap">
+<item elementID="=bootstrap-base-01" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Bootstrap-base" type="4"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1533362203084_7" label="05 SpringSecurity" name="05 SpringSecurity">
+<item elementID="=springSecurity-base-01" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/springSecurity-base" type="4"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1533907403918_8" label="06 MongoDB File" name="06 MongoDB File">
+<item elementID="=MongoDB-File-Server" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1533125547339_1" label="Window Working Set" name="Aggregate for window 1533125547339"/>
+<mruList name="06 MongoDB File"/>
+<mruList name="01 Thymeleaf"/>
+</workingSetManager>

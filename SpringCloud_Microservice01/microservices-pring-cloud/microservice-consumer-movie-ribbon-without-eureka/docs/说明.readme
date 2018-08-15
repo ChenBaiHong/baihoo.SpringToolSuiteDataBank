@@ -1,0 +1,18 @@
+1. 当前工程是 电影消费者微服务案例, 整合ribbon负载均衡
+		
+		--Eureka Client是一个Java客户端，用于简化与Eureka Server的交互，客户端同时也具备一个内置的、使用轮询（round-robin）负载算法的负载均衡器。
+		
+2. CustomConfiguration CLA必须是一个@Configuration类，但是要注意，对于主应用程序上下文来说，它不是在@ComponentScan中。
+否则，所有@RibbonClients都会共享它。如果使用@ComponentScan(或@SpringBootApplication)，则需要采取步骤避免包含它(例如，
+您可以将其放在单独的、不重叠的包中，或者指定要在@ComponentScan中显式扫描的包)。
+	
+3.自定义ribbon 配置文件，实现负载均衡. 当前工程ribbon不实现关联Eureka，而采用application.yml中的配置
+		|-------------------------------------------------------------------------------------------------------------------
+		|		#将ribbon.eureka.Enable属性设置为false显式禁止在Ribbon中使用Eureka。     
+		|		ribbon:																													
+		|		  eureka:
+		|		    enabled: false
+		|		microservice-provider-user: 
+		|		  ribbon:
+		|		    listOfServers: localhost:7905 #因此只会访问7905的节点
+		|--------------------------------------------------------------------------------------------------------------------

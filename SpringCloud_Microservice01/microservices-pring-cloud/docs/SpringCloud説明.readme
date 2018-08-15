@@ -1,0 +1,43 @@
+《--=================================================================================================--》
+	eureka官方说明：
+		http://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-netflix.html
+		
+《--=================================================================================================--》
+	项目学习顺序：
+	microservices-pring-cloud ------ 01
+	
+		microservice-provider-user ------ 02  提供者 
+																	注册eureka客户端服务
+																	SpringBoot内部对象RestTemplate对象实现微服务调用（相当于webservice的调用）
+																	
+		microservice-provider-goods ------ 02 提供者
+																	注册eureka客户端服务
+																	SpringBoot内部对象RestTemplate对象实现微服务调用（相当于webservice的调用）
+																	
+		microservice-consumer-movie ------ 03  消费者
+																	注册eureka客户端服务
+																	SpringBoot内部对象RestTemplate对象实现微服务调用（相当于webservice的调用）
+																	
+		microservice-discovery-eureka ----- 04 eureka 
+																	服务集群，发现服务
+		
+		microservice-consumer-movie-ribbon ------ 05
+																	注册eureka客户端服务
+																	配置对象初始化的方式，实现如何ribbon 以某个算法类来负载均衡（比如随机负载，轮询负载）
+																	SpringBoot内部对象RestTemplate对象实现微服务调用（相当于webservice的调用）
+																	
+		microservice-consumer-movie-ribbon-customizing-properties ------ 06
+																	注册eureka客户端服务
+																	自定义配置文件实现如何ribbon 以某个算法类来负载均衡（比如随机负载，轮询负载）
+																	SpringBoot内部对象RestTemplate对象实现微服务调用（相当于webservice的调用）
+																	
+		microservice-consumer-movie-ribbon-without-eureka ------ 07
+																	注册eureka客户端服务
+																	不关联eureka集群化的多个provider的节点(端口：任意个)，指定ribbon负载 访问的provider（端口:7905）节点
+																	SpringBoot内部对象RestTemplate对象实现微服务调用（相当于webservice的调用）
+																	
+		microservice-consumer-movie-feign ------ 08
+																	注册eureka客户端服务
+																	feign已经集成了ribbon负载均衡
+																	feign实现微服务远程调用（相当于webservice的调用）
+																	

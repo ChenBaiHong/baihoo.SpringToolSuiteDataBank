@@ -1,0 +1,53 @@
+package com.baihoo.blog.anno;
+
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.Inherited;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+
+import javax.validation.Constraint;
+import javax.validation.Payload;
+
+import com.baihoo.blog.validator.UserValidator.UsernameValidator;
+
+/**
+ * user 的用戶名稱，注解校驗唯一性
+ * @author Administrator
+ *
+ */
+@Target(value = {METHOD , FIELD})   	// 作用于方法和字段屬性上
+@Retention(RUNTIME)								//持久化操作，運行時加載
+@Inherited
+@Documented
+@Constraint(validatedBy= {UsernameValidator.class}) //約束與制定的校驗器
+public @interface UsernameUnique {
+	/**
+	 * 校驗信息
+	 * @return
+	 */
+    String message() default "{User.username.unique}";
+    /**
+     * 校驗分組
+     * @return
+     */
+    Class<?>[] groups() default { }; 
+    /**
+     * 针对某个类进行校验
+     * @return
+     */
+    Class<?> entity();
+    /**
+     * 某个类的特定类字段
+     * @return
+     */
+    String property() default "";
+    /**
+     * 
+     * @return
+     */
+    Class<? extends Payload>[] payload() default { };
+}

@@ -1,0 +1,73 @@
+package com.baihoo.blog.configuration;
+
+import java.util.Locale;
+
+import javax.validation.Validator;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.core.convert.support.DefaultConversionService;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+
+import com.baihoo.blog.convertor.CustomDateConverter;
+import com.baihoo.blog.convertor.CustomTrimString;
+
+/**
+ * 
+ * @author Administrator
+ *
+ */
+@Configuration
+public class Springmvc {
+
+    /**
+     * 
+     * 通過轉換器服務類，添加自定義的轉換器
+     * {@link ConversionServiceDeducer}
+     * @return
+     */
+    @Bean
+    public ConversionService conversionService() {
+        DefaultConversionService service = new DefaultConversionService();
+        service.addConverter(new CustomDateConverter());
+        service.addConverter(new CustomTrimString());
+        return service;
+    }
+    /**
+     * SpringBoot validator国际化校验
+     * @return
+     * @throws Exception
+     */
+	@Bean
+	public ResourceBundleMessageSource getMessageSource() throws Exception {
+		ResourceBundleMessageSource rbms = new ResourceBundleMessageSource();
+		rbms.setDefaultEncoding("UTF-8");
+		rbms.setBasename("classpath:/i18n/validation/ValidationMessages");
+//		rbms.setBasenames("","","");//可以配置多个国家化校验properties文件
+		return rbms;
+	}
+	@Bean
+	public LocaleResolver localeResolver() {
+	    SessionLocaleResolver sessionLocaleResolver = new SessionLocaleResolver();
+	    sessionLocaleResolver.setDefaultLocale(Locale.US);
+	    return sessionLocaleResolver;
+	}
+
+	/**
+	 * 配置自动注入校验器
+	 * @return
+	 * @throws Exception
+	 */
+	@Bean
+	public Validator getValidator() throws Exception {
+		LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
+		validator.setValidationMessageSource(getMessageSource());
+		return validator;
+	}
+}

@@ -1,0 +1,29 @@
+package com.baihoo.springboot.common.criteria;
+
+import java.util.List;
+
+import com.baihoo.springboot.common.criteria.type.ExprType;
+import com.baihoo.springboot.common.criteria.type.LogicType;
+import com.baihoo.springboot.common.criteria.type.OrderByType;
+import com.baihoo.springboot.common.criteria.type.OrderType;
+
+/**
+ * baiHoo 查询条件组织
+ * @author Administrator
+ *
+ */
+public class CriteriaType {
+	/**
+	 * @param _distinct 是否去重
+	 * @param _entity 实体
+	 * @param _expr	操作字段
+	 * @param _and    
+	 * @param order
+	 * @param orderBy 
+	 */
+	private Boolean _distinct;
+	private String _entity;
+	private List<ExprType> _expr;
+	private List<OrderType> order;
+	private List<OrderByType> orderBy;
+}

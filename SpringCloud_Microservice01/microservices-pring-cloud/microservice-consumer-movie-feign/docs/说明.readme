@@ -1,0 +1,4 @@
+
+1. 当前工程是,电影消费者微服务案例,声明式调用Feign
+	Feign受Retrofix、JAXRS-2.0和WebSocket影响，采用了声明式API接口的风格，将Java Http客户端绑定到他的内部。Feign的首要目标是将Java Http客户端调用过程变得简单。
+	Feign是一个声明性的Web服务客户端。它使编写Web服务客户端变得更容易。feign已经集成了Ribbon客户端负载功能，所以使用feign时可无需考虑客户端的负载。

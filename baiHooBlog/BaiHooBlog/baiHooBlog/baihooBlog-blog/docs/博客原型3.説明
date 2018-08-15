@@ -1,0 +1,39 @@
+
+《==================================================================================》
+博客管理实现
+	功能实现：
+		用户主页的实现
+		个人资料的设置
+		个人头像的更换
+		
+文件服务器
+	MongoDB file Server
+	
+
+该工程实现API
+	userspace : 用户主页空间
+		/userspace/{username} : GET 具体某个用户得主页
+			username: 用户账号
+		/userspace/{username}/profile : GET 获取个人设置页面
+			username: 用户账号
+		/userspace/{username}/profile : POST 保存个人设置页面
+			username: 用户账号
+			User : 带保存对象
+			
+		/userspace/{username}/avatar : GET 获取个人设置页面
+			username: 用户账号
+		/userspace/{username}/avatar : POST 保存个人设置页面
+			username: 用户账号
+			User : 带保存对象
+			
+		/userspace/{username}/blogs ： GET查询用户博客，以下三个条件人选一个	
+			order: 排序类型 ， new/hot , 默认是new
+			catelog: 博客分类Id ,默认是空
+			keywork: 搜索关键字。博客得标签，即为关键字
+			async: 是否异步请求页面
+			pageIndex
+			pageSize
+		/userspace/{username}/blogs/edit ： GET获取新增博客界面
+		/userspace/{username}/blogs/edit ： POST 新增/编辑博客
+		/userspace/{username}/blogs/edit/{id ： GET 获取编辑博客界面
+		/userspace/{username}/blogs/delete/{id ： DELETE 删除博客

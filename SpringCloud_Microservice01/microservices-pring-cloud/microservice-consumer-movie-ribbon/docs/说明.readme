@@ -1,0 +1,17 @@
+1. 当前工程是 电影消费者微服务案例, 整合ribbon负载均衡
+		
+		--Eureka Client是一个Java客户端，用于简化与Eureka Server的交互，客户端同时也具备一个内置的、使用轮询（round-robin）负载算法的负载均衡器。
+		
+2. CustomConfiguration CLA必须是一个@Configuration类，但是要注意，对于主应用程序上下文来说，它不是在@ComponentScan中。
+否则，所有@RibbonClients都会共享它。如果使用@ComponentScan(或@SpringBootApplication)，则需要采取步骤避免包含它(例如，
+您可以将其放在单独的、不重叠的包中，或者指定要在@ComponentScan中显式扫描的包)。
+	
+3.自定义ribbon 负载均衡，当前工程控制层 controller.java 通过RestTemplate，调用“提供端微服务【多个服务提供者】”要实现负载均衡调用，负载规则通过Java类书写配置
+	案例：一个微服务有多个节点，负载均衡调用节点
+	MICROSERVICE-PROVIDER-USER	
+			 XS-20171114WLQY:microservice-provider-user:7905 , 
+			 XS-20171114WLQY:microservice-provider-user:7906
+			 
+	MICROSERVICE-PROVIDER-USER2
+			XS-20171114WLQY:microservice-provider-user2:7904 , 
+			XS-20171114WLQY:microservice-provider-user2:7907

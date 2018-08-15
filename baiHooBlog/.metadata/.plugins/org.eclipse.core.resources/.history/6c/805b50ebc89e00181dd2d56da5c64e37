@@ -1,0 +1,28 @@
+package com.baihoo.springboot.fileserver.common.criteria;
+
+/**
+ * baiHoo
+ * @author Administrator
+ *
+ */
+public class CriteriaType {
+	/**
+	 * @param criteria
+	 */
+	private Criteria criteria;
+
+	public Criteria getCriteria() {
+		return criteria;
+	}
+
+	public void setCriteria(Criteria criteria) {
+		this.criteria = criteria;
+	}
+
+	public CriteriaType() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+}

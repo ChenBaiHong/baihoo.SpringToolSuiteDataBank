@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>Thymeleaf in action</title>
+</head>
+<body>
+	<!-- 引用替换当前的头部信息html 
+		曲义解释：
+			引用header.html 定义的 header片段
+	-->
+	<div th:replace="~{fragments/header :: header}"></div>
+	<h3 th:text="${userModel.title}"> 原型效果 baihoo</h3>
+	
+		<!-- 获取userModel绑定user -->
+		<form action="/user/submit" th:action="@{/user/submit}" method="post" th:object="${userModel.user}">
+			<input type="hidden" name="id" th:value="*{id}" > <!-- 直接取出当前对象属性的值 -->
+			名称：<br>
+			<input type="text" name="name" th:value="*{name}"><br> <!-- 直接取出当前对象属性的值 -->
+			邮箱：<br>
+			<input type="text" name="email" th:value="*{email}"><br> <!-- 直接取出当前对象属性的值 -->
+			<input type="submit" value="提交">		
+		</form>
+	
+	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

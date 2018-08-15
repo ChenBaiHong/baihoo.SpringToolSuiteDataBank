@@ -1,0 +1,10 @@
+package com.baihoo.springboot.common;
+
+/**
+ * baiHoo 查询条件组织
+ * @author Administrator
+ *
+ */
+public class CriteriaType {
+
+}

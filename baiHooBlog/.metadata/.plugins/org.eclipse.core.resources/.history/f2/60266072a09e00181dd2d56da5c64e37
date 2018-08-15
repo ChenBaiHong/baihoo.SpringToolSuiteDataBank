@@ -1,0 +1,24 @@
+$('.bh-button').click(function(){
+  $('.pop-up').addClass('open');
+});
+$('.blog-view-file').click(function(){
+	//获取图片id
+	 	//var fileId = $(this).attr("fileId");
+		$.ajax({ 
+			 url: "/view/" + $(this).attr("fileId") , 
+			 type: 'GET', 
+			 async:false,
+			 success: function(data){
+				 
+				  $('.pop-up').addClass('open');
+				 location.reload();
+		     },
+		     error : function() {
+		    	 alert("error")
+		     }
+		 });
+
+});
+$('.pop-up .close').click(function(){
+  $('.pop-up').removeClass('open');
+});

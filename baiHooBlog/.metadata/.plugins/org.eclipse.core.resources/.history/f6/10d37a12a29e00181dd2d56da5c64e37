@@ -1,0 +1,23 @@
+$('.bh-button').click(function(){
+  $('.pop-up').addClass('open');
+});
+$('.blog-view-file').click(function(){
+	//获取图片id
+ 	//var fileId = $(this).attr("fileId");
+	$.ajax({ 
+		 url: "/view/" + $(this).attr("fileId") , 
+		 type: 'GET', 
+		 async: true,//異步執行！！！
+		 success: function(data){
+			 //console.info(data);
+			 $("#faviconimg").attr("src" , data)
+			  $('.pop-up').addClass('open');
+	     },
+	     error : function() {
+	    	 alert("error")
+	     }
+	 });
+});
+$('.pop-up .close').click(function(){
+  $('.pop-up').removeClass('open');
+});

@@ -1,0 +1,260 @@
+package com.baihoo.blog.domain;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.baihoo.blog.anno.UsernameUnique;
+
+/**
+ * 用户实体
+ * @author Administrator
+ *
+ */
+
+@DynamicUpdate
+@Entity(name="USER")
+public class User implements UserDetails, Serializable {
+
+	/**
+	 * @param id 					主鍵，用戶唯一標識 ， 自動增長策略
+	 * @param name			用戶姓名
+	 * @param email			用戶郵箱
+	 * @param username		用户账号，用户登录时的唯一标识,唯一不能重複
+	 * @param password		用戶密碼
+	 * @param avatar			頭像圖片地址
+	 * @param authorities 	用戶具有權限集合，嬾加載
+	 * @param createTime 	創建時間
+	 * @param updateTime 最後更新時間
+	 * @param description 	描述
+	 * @param version 		版本
+	 */
+	
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	@Column(name="ID") 
+	private Long id; 
+
+	@NotEmpty(message = "{User.name.notnull}")
+	@Size(min=2, max=20)
+	@Column(name="NAME" , nullable = false, length = 55) 
+	private String name;
+
+	@NotEmpty(message = "{User.email.notnull}")
+	@Size(max=50)
+	@Email(message= "{User.email.regx.error}" ) 
+	@Column(name="EMAIL" , nullable = false, length = 55, unique = true)
+	private String email;
+
+	@NotEmpty(message = "{User.username.notnull}")
+	@Size(min=3, max=20)
+	@Column(name="USERNAME" , nullable = false, length = 55, unique = true)
+	@UsernameUnique(entity = User.class , property="username")
+	private String username; 
+
+	@NotEmpty(message = "{User.password.notnull}")
+	@Size(max=100)
+	@Column(name="PASSWORD" , length = 99)
+	private String password; 
+	
+	@Column(name="AVATAR" , length = 199)
+	private String avatar; 
+
+	@Column(name="CREATE_TIME")
+	private Date createTime;
+	@Column(name="UPDATE_TIME")
+	private Date updateTime;
+	@Column(name="DESCRIPTION")
+	private String description;
+	@Column(name="VERSION")
+	private Long version;
+	
+	/**
+	 * 加入中間表user_authority
+	 * 		中間表加入列user_id，參考列為當前主鍵列
+	 * 		中間表加入列authority_id， 參考當前表倒置到Authority表的主鍵列
+	 */
+	@ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+	@JoinTable(name = "USER_AUTHORITY", 
+						joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"),
+						inverseJoinColumns = @JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID"))
+    private List<Authority> authorities;
+	
+	/**
+	 * 	JPA 的规范要求无参构造函数；设为 protected 防止直接使用
+	 */
+	public User() { 
+	}
+
+	public User(String name, String email,String username,String password) {
+		this.name = name;
+		this.email = email;
+		this.username = username;
+		this.password = password;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	@Override
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	@Override
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+        this.password = password;
+	}
+	/**
+	 *  对密碼BCrypt加密
+	 * @param password
+	 */
+	public void setPasswordEncoder(String password) {
+        PasswordEncoder  encoder = new BCryptPasswordEncoder();
+        String encodePasswd = encoder.encode(password);
+        this.password = encodePasswd;
+	}
+	
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+	
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
+
+	/**
+	 * 需将 List<Authority> 转成 List<SimpleGrantedAuthority>，否则前端拿不到角色列表名称
+	 */
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<SimpleGrantedAuthority> simpleAuthorities = new ArrayList<>();
+        if(this.authorities !=null) {
+            for(GrantedAuthority authority : this.authorities){
+                simpleAuthorities.add(new SimpleGrantedAuthority(authority.getAuthority()));
+            }
+        }
+        return simpleAuthorities;
+	}
+
+	public void setAuthorities(List<Authority> authorities) {
+		this.authorities = authorities;
+	}
+	
+	@Override
+	public boolean isAccountNonExpired() {
+		//重載默認是false,我們要改成true
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		//重載默認是false,我們要改成true
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		//重載默認是false,我們要改成true
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		//重載默認是false,我們要改成true
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", username=" + username + ", password="
+				+ password + ", avatar=" + avatar + ", createTime=" + createTime + ", updateTime=" + updateTime
+				+ ", description=" + description + ", version=" + version + ", authorities=" + authorities + "]";
+	}
+	
+}

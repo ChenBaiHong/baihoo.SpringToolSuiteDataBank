@@ -1,0 +1,43 @@
+$('.bh-button').click(function(){
+  $('.pop-up').addClass('open');
+});
+$('.blog-view-file').click(function(){
+	//获取图片id
+ 	//var fileId = $(this).attr("fileId");
+	$.ajax({ 
+		 url: "/view/" + $(this).attr("fileId") , 
+		 type: 'GET', 
+		 async: true,//異步執行！！！
+		 success: function(data){
+			 //console.info(data);
+			 $("#faviconimg").attr("src" , data)
+			  $('.pop-up').addClass('open');
+	     },
+	     error : function() {
+	    	 alert("error")
+	     }
+	 });
+});
+$('.pop-up .close').click(function(){
+  $('.pop-up').removeClass('open');
+});
+function readStreamImg (){
+	var url = serverUrlBase + "/server/images/" + mapid + "/files/png";
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.responseType = "blob";
+    xhr.setRequestHeader("client_type", "DESKTOP_WEB");
+    xhr.setRequestHeader("desktop_web_access_key", _desktop_web_access_key);
+    xhr.onload = function() {
+        if (this.status == 200) {
+            var blob = this.response;
+            var img = document.createElement("img");
+            img.onload = function(e) {
+                window.URL.revokeObjectURL(img.src); 
+            };
+            img.src = window.URL.createObjectURL(blob);
+            $("#imgcontainer").html(img);    
+        }
+    }
+    xhr.send();
+}

@@ -1,0 +1,5 @@
+package com.baihoo.blog.validator.UserValidator;
+
+public class UniqueValidateControl {
+
+}

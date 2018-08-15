@@ -1,0 +1,33 @@
+<================================================================================>
+1、修改application.yml 文件
+	spring:
+	  thymeleaf:
+	    encoding: UTF-8
+	    cache: false #热部署静态文件，禁止缓存
+	    mode: HTML5 #使用HTML5标准
+	    
+<================================================================================>
+2. API设计
+	GET /user/list : 返回用于展现用户列表的list.html 页面；
+	GET /user/view/{id}: 返回用于展现用户的view.html 页面；
+	GET /user/from：返回用于新增或修改用户的form.html页面；
+	POST / user/submit : 新增或者修改用户，成功后重定向到list.html页面；
+	GET /users/delete/{id}: 根据id删除相应的用户数据，成功后重定向到list.html页面； 
+	GET /users/modify{id}: 根据id获取相应的用户数据，并返回form.html页面用来执行修改。
+	
+	2.1、后台编码
+		实体 ---------> User
+		资源库 ---------> UserRepository
+		控制器 ---------> UserController
+		
+	2.2、前端编码	
+		list.html ： 用于展现用户列表
+		form.html : 用于新增或者修改用户的资料
+		view.html ： 用于查看某个用户的资料
+		header.html : 共用的头部页面
+		footer.html : 共用的底部页面
+		
+<================================================================================>
+	
+2. 加入網站標簽圖片
+		/thymeleaf-base-01/src/main/resources/static/favicon.ico

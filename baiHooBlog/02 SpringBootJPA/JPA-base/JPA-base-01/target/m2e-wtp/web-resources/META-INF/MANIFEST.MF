@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: jpa-base-01
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Administrator
+Implementation-Vendor-Id: com.baihoo.jpa
+Build-Jdk: 1.8.0_151
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/JPA-base/jpa-base-01
+Created-By: Maven Integration for Eclipse
+

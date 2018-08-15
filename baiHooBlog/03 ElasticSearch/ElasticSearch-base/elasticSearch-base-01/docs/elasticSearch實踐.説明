@@ -1,0 +1,25 @@
+《================================================================================》
+ElasticSearch 属于外部应用体系，需要启动bat文件
+
+
+1、ElasticSearch 全文檢索
+	全文檢索
+		ElasticSearch 與 Spring Boot集成
+		ElasticSearch 簡介
+		ElasticSearch 實踐
+		ElasticSearch 核心概念
+		數據結構：
+			結構化：指具有固定格式或有限長度的數據，如數據庫，元數據等。
+			非結構化：指不定長度或無固定的數據，如郵件，word文檔等。
+			非結構化數據的檢索
+			順序掃描發（serial Scanning）
+			全文搜索（Full-text search）
+		概念
+			全文搜索是一種將文件中所有文本域搜索項匹配的文字資料檢索方法
+			
+《================================================================================》
+後臺編碼
+	文檔 	EsBlog
+	資源庫 	EsBlogRepository
+	資源庫測試用例 	EsBlogRepoistoryTest
+	文檔控器	 EsBlogController

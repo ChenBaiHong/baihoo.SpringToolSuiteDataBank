@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="microservice-consumer-movie-ribbon-without-eureka"/>
+<aop-project name="microservice-consumer-movie-ribbon-customizing-properties"/>
+<aop-project name="microservice-provider-user"/>
+<aop-project name="microservice-consumer-movie-ribbon"/>
+<aop-project name="microservice-consumer-movie"/>
+<aop-project name="microservice-consumer-movie-feign"/>
+<aop-project name="microservice-provider-goods"/>
+<aop-project name="microservice-discovery-eureka"/>
+</aop-reference-model>

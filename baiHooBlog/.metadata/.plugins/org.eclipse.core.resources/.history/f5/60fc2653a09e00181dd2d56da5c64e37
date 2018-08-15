@@ -1,0 +1,12 @@
+$('.bh-button').click(function(){
+  $('.pop-up').addClass('open');
+});
+$('.blog-view-file').click(function(){
+	//获取图片id
+	 var fileId = $(this).attr("fileId");
+	 alert(fileId);
+	  $('.pop-up').addClass('open');
+});
+$('.pop-up .close').click(function(){
+  $('.pop-up').removeClass('open');
+});

@@ -1,0 +1,187 @@
+package com.baihoo.blog.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.baihoo.blog.domain.User;
+import com.baihoo.blog.service.UserService;
+import com.baihoo.blog.validator.UserValidator.UniqueValidateControl;
+import com.baihoo.blog.vo.Response;
+
+/**
+ * 用戶主頁控制器 作用
+ * 
+ * @author Administrator
+ *
+ */
+@Controller
+@RequestMapping("/userspace")
+public class UserspaceController {
+	//注入
+	@Autowired
+	@Qualifier("userService")
+	private UserService userService;
+	//文件服务器地址
+	@Value("file.server.url")
+	private String fileServerUrl;
+	
+	/**
+	 * 方法功能：<br>
+	 * 		儅訪問的是一個用戶名的時，我們進入用戶的主頁<br>
+	 * @param username
+	 * @return
+	 */
+	@GetMapping("/{username}")
+	public String userSpace(@PathVariable("username") String username) {
+		System.out.println(username);
+		//返回用戶頁面
+		return "/bloguser";
+	}
+
+	/**
+	 * 博客個人信息頁展示
+	 * @param username
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/{username}/profile")
+	//该表达式将被评估以决定是否允许方法调 ， 認證修改用戶必須是當前登陸用戶，才能進入修改個人信息頁
+	@PreAuthorize("authentication.name.equals(#username)") 
+	public ModelAndView profile(@PathVariable("username")String username , Model model) {
+		User user = (User) userService.loadUserByUsername(username);
+		model.addAttribute("user" , user);
+		//model.addAttribute("fileServerUrl" , fileServerUrl);//文件服务器
+		return new ModelAndView("/userspace/profile", "userModel", model);
+	}
+	
+	/**
+	 * 保存个人设置
+	 * @param username
+	 * @param user
+	 * @return
+	 * @throws Exception 
+	 */
+	@PostMapping("/{username}/profile")
+	//该表达式将被评估以决定是否允许方法调 ， 認證修改用戶必須是當前登陸用戶，才允許修改個人信息頁
+	@PreAuthorize("authentication.name.equals(#username)") 
+	public String saveProfile(@PathVariable("username") String username ,  User user) throws Exception {
+		User originalUser = userService.findById(user.getId());
+		originalUser.setEmail(user.getEmail());
+		originalUser.setName(user.getUsername());
+		// 判断密码是否做了变更
+		String rawPassword = originalUser.getPassword();
+		PasswordEncoder encoder =  new BCryptPasswordEncoder();
+		String encodedPassword = encoder.encode(user.getPassword());
+		boolean isMatch = encoder.matches(rawPassword, encodedPassword);
+		if(!isMatch) {
+			originalUser.setPasswordEncoder(user.getPassword());
+		}
+		//保存
+		new UniqueValidateControl<User>(user , "username").setIsvalidate(false); // username约束校验
+		userService.saveOrUpdate(originalUser);
+		return "redirect:/userspace/" + username + "/profile";
+	}
+	/**
+	 * 获取编辑用户头像界面, 以Ajax的形式展开
+	 * @param username
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/{username}/avatar")
+	//该表达式将被评估以决定是否允许方法调 ， 認證修改用戶必須是當前登陸用戶，才允許進入修改用戶個人頭像頁
+	@PreAuthorize("authentication.name.equals(#username)") 
+	public ModelAndView avatar(@PathVariable("username") String username , Model model) {
+		User user = (User) userService.loadUserByUsername(username);
+		model.addAttribute("user" ,user);
+		
+		return new ModelAndView("/userspace/avatar", "userModel", model);
+	}
+	
+	/**
+	 * Ajax 编辑用户头像,并返回响应包体
+	 * @param username
+	 * @param user
+	 * @return
+	 * @throws Exception 
+	 */
+	@PostMapping("/{username}/avatar")
+	@PreAuthorize("authentication.name.equals(#username)")
+	public ResponseEntity<Response> saveAvatar(@PathVariable("username") String username , @RequestBody User user) throws Exception{
+		String avatarUrl  = user.getAvatar();
+		
+		User originalUser = userService.findById(user.getId());
+		originalUser.setAvatar(avatarUrl);
+		userService.saveOrUpdate(originalUser);
+		
+		return ResponseEntity.ok().body(new Response(true , "处理成功", avatarUrl));
+	}
+	
+	/**
+	 * 方法功能：<br>
+	 * 		查看某個用戶下博客
+	 * 
+	 * @param username		用戶名稱
+	 * @param order			用戶博客排序，默認根據最新排序
+	 * @param category		用戶博客分類
+	 * @param keyword		用戶博客關鍵字搜索
+	 * @return
+	 */
+	@GetMapping("/{username}/blogs")
+	public String listBlogsByOrder(@PathVariable("username") String username,
+			@RequestParam(value = "order", required = false, defaultValue = "new") String order,
+			@RequestParam(value = "category", required = false) Long category,
+			@RequestParam(value = "keyword", required = false) String keyword) {
+		
+		if(category != null) {
+			System.out.println("category:"+category);
+			System.out.println("selflink:"+"redirect:/userspace/"+username+"/blogs?category="+category);
+			//返回用戶頁面
+			return "/bloguser";
+		}else if(keyword != null && keyword.isEmpty()==false) {
+			System.out.println("keyword:"+keyword);
+			System.out.println("selflink:"+"redirect:/userspace/"+username+"/blogs?keyword="+keyword);
+			//返回用戶頁面
+			return "/bloguser";
+		}
+		System.out.println("order:"+order);
+		System.out.println("selflink:"+"redirect:/userspace/"+username+"/blogs?order="+order);
+		//返回用戶頁面
+		return "/bloguser";
+	}
+	/**
+	 * 方法功能：<br>
+	 * 		根據某個博客的id，獲取博客文章<br>
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/{username}/blogs/{id}")
+	public String listBlogsByOrder(@PathVariable("id") Long id) {
+		System.out.println("blogId:"+id);
+		//返回博客文章頁面
+		return "/blog";
+	}
+	/**
+	 * 方法功能：<br>
+	 * 		同過url跳轉到博客編輯頁面
+	 * @return
+	 */
+	@GetMapping("/{username}/blgos/edit")
+	public String editBlog() {
+		//博客編輯頁面
+		return "/blogeidt";
+	}
+}

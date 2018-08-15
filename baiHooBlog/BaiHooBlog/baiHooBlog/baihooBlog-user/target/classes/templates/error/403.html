@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<!-- thymeleaf模板集合springsecurity標簽權限控制，的命名空間 -->
+
+<!-- 引用替换当前的头部信息html 
+	曲义解释：
+		引用header.html 定义的 header片段
+-->
+<head th:replace="~{fragments/header :: header}">
+<meta charset="UTF-8">
+</head>
+<body>
+	<!-- page content -->
+	<div class="container blog-content-container">
+		<div class="starter-template">
+			<h1>403 - 没有访问权限</h1>
+			<div th:inline="text">Sorry！
+				
+				'[[${#httpServletRequest.remoteUser}]]', 你没有权限访问此页面.</div>
+		</div>
+	</div>
+	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

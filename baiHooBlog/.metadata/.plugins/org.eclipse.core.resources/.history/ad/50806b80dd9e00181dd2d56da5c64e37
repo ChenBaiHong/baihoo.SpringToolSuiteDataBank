@@ -1,0 +1,25 @@
+package com.baihoo.springboot.fileserver.common.criteria;
+
+/**
+ * baiHoo
+ * @author Administrator
+ *
+ */
+public class CriteriaType {
+	/**
+	 * @param meCriteria
+	 */
+	private MeCriteria meCriteria;
+
+	public MeCriteria getCriteria() {
+		return meCriteria;
+	}
+
+	public void setCriteria(MeCriteria meCriteria) {
+		this.meCriteria = meCriteria;
+	}
+
+	public CriteriaType() {
+		super();
+	}
+}

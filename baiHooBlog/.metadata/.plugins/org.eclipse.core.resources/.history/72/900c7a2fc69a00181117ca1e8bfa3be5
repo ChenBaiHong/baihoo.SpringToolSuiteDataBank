@@ -1,0 +1,24 @@
+server:
+  port: 8080
+#debug: true
+spring:
+  thymeleaf:
+    encoding: UTF-8
+    cache: false #热部署静态文件，禁止缓存
+    mode: HTML5 #使用HTML5标准
+#配置数据源    
+  datasource:
+    username: root
+    password: 'root'
+    url: jdbc:mysql://192.168.1.15/baihooBlog?characterEncoding=utf-8&useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update #自动更新建表
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQLDialect # 配置數據庫方言
+  #springboot文件中配置國際化，校驗配置信息
+  messages:
+    fallback-to-system-locale: false
+    encoding: UTF-8
+    basename: i18n/validation/ValidationMessages

@@ -1,0 +1,66 @@
+/*!
+  * Bolg main JS.
+ */
+"use strict";
+//# sourceURL=main.js
+ 
+// DOM 加载完再执行
+$(function() {
+	var _pageSize; // 存储用于搜索
+	// 根据用户名、页面索引、页面大小获取用户列表
+	function getUersByName(pageIndex, pageSize) {
+		 $.ajax({ 
+			 url: "/users", 
+			 contentType : 'application/json',
+			 data:{
+				 "async":true, 
+				 "pageIndex":pageIndex,
+				 "pageSize":pageSize,
+				 "name":$("#searchName").val()
+			 },
+			 success: function(data){
+				 $("#mainContainer").html(data);
+		     },
+		     error : function() {
+		    	 toastr.error("error!");
+		     }
+		 });
+	}
+	//查询
+	$(".queryButton").click(function(){
+		alert($(".custom-select").val());
+		$("input[name='pageIndex']").val($(".custom-select").val());
+		alert($("a.active").attr("pageIndex"));
+		$("input[name='pageSize']").val($("a.active").attr("pageIndex"));
+	});
+	// 刪除文件
+	$(".blog-delete-file").click(function () { 
+		// 获取 CSRF Token 		
+//		var csrfToken = $("meta[name='_csrf']").attr("content");
+//		var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+		var affirm=confirm("确认删除吗？");
+		if(affirm == true){
+			$.ajax({ 
+				 url: "/" + $(this).attr("fileId") , 
+				 type: 'DELETE', 
+//				 beforeSend: function(request) {
+//	                 request.setRequestHeader(csrfHeader, csrfToken); // 添加  CSRF Token 
+//	             },
+				 success: function(data){
+					 location.reload();
+//					 if (data.success) {
+//						 alert('de')
+//						 // 从新刷新主界面
+//						 //getUersByName(0, _pageSize);
+//					 } else {
+//						 alert('de2')
+//						 //toastr.error(data.message);
+//					 }
+			     },
+			     error : function() {
+			    	 toastr.error("error!");
+			     }
+			 });
+		}
+	});
+});

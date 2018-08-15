@@ -1,0 +1,24 @@
+spring:
+  thymeleaf:
+    encoding: UTF-8
+    cache: false #热部署静态文件，禁止缓存
+    mode: HTML5 #使用HTML5标准
+ #使用H2控制台
+  h2:
+    console:
+      enabled: true
+  #JPA
+  jpa:
+    hibernate:
+      ddl-auto: create-drop #ddl創建表或刪除表
+    show-sql: true  #輸出SQL語句
+  #ElasticSearch 服務地址
+  data:
+    elasticsearch:
+      # 连接节点,注意在集群中通信都是9300端口，否则会报错无法连接上！
+      cluster-nodes: 192.168.1.12:9300
+      # 集群名
+      cluster-name: elasticsearch
+      repositories:
+        # 仓库中数据存储
+        enabled: true

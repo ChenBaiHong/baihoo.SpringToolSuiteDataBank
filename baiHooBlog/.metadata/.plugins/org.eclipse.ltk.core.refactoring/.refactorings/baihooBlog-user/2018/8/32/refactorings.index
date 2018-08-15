@@ -1,0 +1,51 @@
+1533476588147	Copy file
+1533479394440	Copy file
+1533479509202	Copy files
+1533479528970	Rename resource 'ValidationMessages_en_US.properties'
+1533479538253	Rename resource 'ValidationMessages_zh_CN.properties'
+1533480491955	Delete element
+1533481874768	Delete elements
+1533482555686	Rename type 'UserValidator'
+1533482559926	Move compilation unit
+1533516251579	Move compilation unit
+1533516476128	Copy compilation unit
+1533516482904	Rename compilation unit 'ConstraintValidationExceptionHandler.java'
+1533516857283	Delete element
+1533516892514	Rename type 'ConstraintValidationExceptionHandler'
+1533558601925	Rename local variable 'pageRequest'
+1533621278167	Copy compilation unit
+1533625737922	Rename resource 'baihooblog.sql'
+1533627612854	Rename type 'GlobalDefultExceptionHandler'
+1533630555497	Delete element
+1533635624475	Delete elements
+1533637548462	Delete element
+1533637552116	Delete element
+1533666058794	Copy file
+1533693787353	Delete element
+1533695810602	Rename resource 'ValidationMessages_zh_CN.properties'
+1533695832761	Rename resource 'ValidationMessages_ZH_CN.properties'
+1533705320869	Delete element
+1533728121569	Copy compilation unit
+1533729098032	Move compilation units
+1533729233494	Copy compilation units
+1533729288408	Copy compilation unit
+1533729293563	Delete element
+1533729318276	Delete element
+1533729366431	Delete element
+1533729372997	Delete element
+1533738835524	Rename type 'MyOraDbUtils'
+1533740615194	Rename method 'getPrimaryKey'
+1533740669197	Rename type 'OraDbUtils'
+1533741563460	Move compilation unit
+1533741873226	Move compilation unit
+1533742044105	Copy compilation units
+1533742054325	Rename type 'OraQueryRunner'
+1533742065566	Move compilation unit
+1533742084827	Delete element
+1533744027304	Delete elements
+1533745020996	Rename type 'GenEntityOracle'
+1533745064112	Delete element
+1533746686116	Move compilation unit
+1533746695199	Rename type 'BaiDbUtils'
+1533746716956	Move compilation unit
+1533801403278	Delete element

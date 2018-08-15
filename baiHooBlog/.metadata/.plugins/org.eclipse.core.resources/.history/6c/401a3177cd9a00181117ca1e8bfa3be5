@@ -1,0 +1,76 @@
+package com.baihoo.blog.handler;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintViolationException;
+
+import org.apache.tomcat.util.buf.StringUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+import com.baihoo.blog.exception.CustomException;
+import com.baihoo.blog.exception.CustomRuntimeException;
+import com.baihoo.blog.vo.Response;
+
+/**
+ * 
+ * @author Administrator<br>
+ * @description
+ *		全局异常处理：<br>
+ *			<ul>
+ *				<li>1、定义一个处理类，使用"@ControllerAdvice"注解。</li>
+ *				<li>2、"@ControllerAdvice" 注解：控制器增强，一个被"@Component"注册的组件。</li>
+ *				<li>3、配合"@ExceptionHandler"来增强所有的"@requestMapping"方法。</li>
+ *				<li>4、例如 "@ExceptionHandler(Exception.class)"  用来捕获"@requestMapping"的方法中所有抛出的exception。</li>
+ *				<li>5、例如 "@ControllerAdvice+@ResponseBody" 可换成 "@RestControllerAdvice" .</li>
+ *			</ul>
+ *@notice
+ *		注意：<br>
+ *		如果非ModelAndView携带返回页面，或者requestDispatcher调用，都将以ajax格式响应到客户端
+ */
+@ControllerAdvice
+@ResponseBody
+public class CustomGlobalExceptionHandler {
+		/**
+		 * 声明要捕获的指定异常<br>
+		 * 响应给客户端告知内部服务错误<br>
+		 * @param request
+		 * @param e 自定义的异常
+		 * @return
+		 */
+		@ExceptionHandler(Exception.class)
+		@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+		public ResponseEntity<Response>  defultExcepitonHandler(HttpServletRequest request, Exception e) {
+			if(e instanceof 
+					CustomException) {
+				
+		        return ResponseEntity.ok().body(new Response(false , e.getMessage()));
+			}else if(e instanceof 
+					CustomRuntimeException ){
+
+		        return ResponseEntity.ok().body(new Response(false , e.getMessage()));
+			}else if(e instanceof 
+					/**
+					 * 約束違反異常處理器:
+					 * 		這對持久化實體 bean 的验证約束違反抛出的異常處理
+					 *
+					 */
+					ConstraintViolationException) {
+				
+				List<String> msgList = new ArrayList<String>();
+				ConstraintViolationException ex = (ConstraintViolationException)e;
+				//獲取批量校驗的異常信息
+				ex.getConstraintViolations().forEach(cv -> msgList.add(cv.getMessage()));
+				return  ResponseEntity.ok().body(new Response(false , StringUtils.join(msgList, ';')));
+			}else {
+				e.printStackTrace();
+				return ResponseEntity.ok().body(new Response(false , e.getMessage()));
+			}
+		}
+}

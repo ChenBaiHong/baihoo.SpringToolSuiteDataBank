@@ -1,0 +1,142 @@
+package com.baihoo.blog.db.oradb;
+
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
+import java.util.LinkedList;
+import java.util.Properties;
+import java.util.logging.Logger;
+
+import javax.sql.DataSource;
+
+/**
+ * DataSource 实现
+ * 
+ * @author Administrator
+ *
+ */
+public class MyDataSource implements DataSource {
+	
+	/**
+	 * @param URL
+	 *            数据库连接
+	 * @param NAME
+	 *            数据库用户名称
+	 * @param PASS
+	 *            数据库用户密码
+	 *  @param DRIVER
+	 *  			数据库驱动
+	 */
+	private static String URL;
+	private static String NAME;
+	private static String PASS;
+	private static String DRIVER; //= "oracle.jdbc.driver.OracleDriver"
+
+	private static LinkedList<Connection> pool = new LinkedList<Connection>();
+	private static MyDataSource instance = new MyDataSource();
+	/**
+	 * 静态栈区<br>
+	 * 	初始化加载配置
+	 */
+	static {
+		try {
+			InputStream inStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("prop/db.properties");
+			Properties prop = new Properties();
+			prop.load(inStream);
+			URL = prop.getProperty("jdbc.username");
+			NAME = prop.getProperty("jdbc.url");
+			PASS = prop.getProperty("jdbc.password");
+			DRIVER = prop.getProperty("jdbc.driver");
+			//类加载，数据库驱动
+			Class.forName(DRIVER);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private MyDataSource() {
+
+	}
+
+	public MyDataSource(String uRL, String nAME, String pASS) {
+		super();
+		URL = uRL;
+		NAME = nAME;
+		PASS = pASS;
+	}
+
+	/**
+	 * 获取数据源单例
+	 * 
+	 * @return 数据源单例
+	 */
+	public static MyDataSource newInstance() {
+		if (instance == null)
+			instance = new MyDataSource();
+		return instance;
+	}
+
+	/**
+	 * 获取一个数据库连接
+	 * 
+	 * @return 一个数据库连接
+	 * @throws SQLException
+	 */
+	public Connection getConnection() throws SQLException {
+		synchronized (pool) {
+			if (pool.size() > 0)
+				return pool.removeFirst();
+			else
+				return makeConnection();
+		}
+	}
+
+	/**
+	 * 连接归池
+	 * 
+	 * @param conn
+	 */
+	public static void freeConnection(Connection conn) {
+		pool.addLast(conn);
+	}
+
+	private Connection makeConnection() throws SQLException {
+		return DriverManager.getConnection(URL, NAME, PASS);
+	}
+
+	public Connection getConnection(String username, String password) throws SQLException {
+		return DriverManager.getConnection(URL, username, password);
+	}
+	
+	public PrintWriter getLogWriter() throws SQLException {
+		return null;
+	}
+
+	public void setLogWriter(PrintWriter out) throws SQLException {
+
+	}
+
+	public void setLoginTimeout(int seconds) throws SQLException {
+
+	}
+
+	public int getLoginTimeout() throws SQLException {
+		return 0;
+	}
+
+	public <T> T unwrap(Class<T> iface) throws SQLException {
+		return null;
+	}
+
+	public boolean isWrapperFor(Class<?> iface) throws SQLException {
+		return false;
+	}
+
+	public Logger getParentLogger() throws SQLFeatureNotSupportedException {
+		return null;
+	}
+
+}

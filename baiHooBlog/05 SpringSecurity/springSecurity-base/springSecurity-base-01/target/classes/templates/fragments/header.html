@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	th:fragment="header">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>bootsrap in action</title>
+<link href="../../static/bootstrap/css/tether.min.css"
+	th:href="@{/bootstrap/css/tether.min.css}" rel="stylesheet">
+<!-- bootstrap css样式 -->
+<link href="../../static/bootstrap/css/bootstrap.min.css"
+	th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+<!-- 样式文字css样式 -->
+<link href="../../static/bootstrap/css/font-awesome.min.css" th:href="@{/bootstrap/css/font-awesome.min.css}" 
+	rel="stylesheet">
+<link href="../../static/bootstrap/css/nprogress.css" th:href="@{/bootstrap/css/nprogress.css}" 
+	rel="stylesheet">
+<link href="../../static/bootstrap/css/thinker-md.vendor.css" th:href="@{/bootstrap/css/thinker-md.vendor.css}" 
+	rel="stylesheet">
+<link href="../../static/bootstrap/css/bootstrap-tagsinput.css" th:href="@{/bootstrap/css/bootstrap-tagsinput.css}" 
+	rel="stylesheet">
+<link href="../../static/bootstrap/css/component-chosen.min.css" th:href="@{/bootstrap/css/component-chosen.min.css}" 
+	rel="stylesheet">
+<link href="../../static/bootstrap/css/toastr.min.css" th:href="@{/bootstrap/css/toastr.min.css}" 
+	rel="stylesheet">
+<!-- 图片编辑的css -->
+<link href="../../static/bootstrap/css/cropbox.css" th:href="@{/bootstrap/css/cropbox.css}" 
+	rel="stylesheet">
+<!-- 自定义的样式 -->
+<link href="../../static/bootstrap/css/style.css" th:href="@{/bootstrap/css/style.css}" 
+	rel="stylesheet">
+<link href="../../static/bootstrap/css/thymeleaf-bootstrap-paginator.css" th:href="@{/bootstrap/css/thymeleaf-bootstrap-paginator.css}"
+	rel="stylesheet">
+<link href="../../static/bootstrap/css/blog.css" th:href="@{/bootstrap/css/blog.css}" 
+	rel="stylesheet">
+</head>
+<body>
+	<nav class="navbar navbar-inverse bg-inverse navbar-toggleable-md">
+		<div class="container">
+			<button class="navbar-toggler navbar-toggler-right" type="button"
+				data-toggle="collapse" data-target="#navbarsContainer">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="/" th:href="@{~/}">baiHoo Blog</a>
+			<div class="collapse navbar-collapse" id="navbarsContainer">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<!-- @{~/user} 相对于服务器下面 --> <a class="nav-link"
+						th:href="@{~/}">首页<span class="sr-only">(current)</span></a>
+					</li>
+				</ul>
+				<!--
+					曲義解釋： 
+						授權認證--已認證，并证明是真实的、可靠的。用戶已登陸 -->
+				<!-- 登陸判斷 -->
+				<div sec:authorize="isAuthenticated()" class="row">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item">
+							<span class="nav-link" sec:authentication="name"></span>
+						</li>
+					</ul>
+					<form action="/logout" th:action="@{~/logout}" method="post"> 
+						<!-- 
+						logout在我編寫的controller是沒有的，該logout遵循springSecurity本身規則的，注銷用戶
+						 -->
+						<input class="btn btn-outline-success" type="submit" value="退出">
+					</form>
+				</div>
+				<!-- 
+					曲義解釋：
+						授權認證--未認證，匿名未登陸的
+				 -->
+				<div sec:authorize="isAnonymous()">
+					<a href="/login" th:href="@{~/login}" class="btn btn-outline-success my-2 my-sm-0" type="submit">登陸</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+</body>
+</html>

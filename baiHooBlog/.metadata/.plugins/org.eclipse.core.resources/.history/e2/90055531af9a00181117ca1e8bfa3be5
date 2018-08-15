@@ -1,0 +1,50 @@
+/**
+ * 
+ */
+package com.baihoo.blog.configuration;
+
+import java.util.Locale;
+
+import org.springframework.beans.factory.ObjectFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.data.web.config.SpringDataWebConfiguration;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+
+/**
+ * 
+ * @author Administrator
+ *
+ */
+@Configuration
+public class MessageConfig extends SpringDataWebConfiguration {
+	
+
+
+	public MessageConfig(ApplicationContext context, ObjectFactory<ConversionService> conversionService) {
+		super(context, conversionService);
+	}
+
+	@Override  
+    public Validator getValidator() {  
+        return validator();  
+    }
+
+
+
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(localeChangeInterceptor());
+    }
+
+}

@@ -1,0 +1,70 @@
+package com.baihoo.blog.validator.UserValidator;
+
+import java.lang.reflect.Method;
+
+import javax.annotation.Resource;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+
+import com.baihoo.blog.anno.UsernameUnique;
+import com.baihoo.blog.db.mysqldb.DataObject;
+import com.baihoo.blog.db.mysqldb.DatabaseUtils;
+import com.baihoo.blog.domain.User;
+import com.baihoo.blog.service.UserService;
+
+/**
+ * 針對用戶的校驗器
+ * @author Administrator
+ *
+ */
+@SuppressWarnings("all")
+public class UsernameValidator  implements ConstraintValidator< UsernameUnique, Object>{
+	
+	@Resource
+	private UserService userService;
+	/**
+	 * @param clazz
+	 * @param property
+	 */
+	private Class<? extends Object> clazz;
+	private String property;
+	@Override
+	public void initialize(UsernameUnique constraintAnnotation) {
+		try {
+			Method enMeth = constraintAnnotation.getClass().getDeclaredMethod("entity", new Class[] {});
+			enMeth.setAccessible(true);
+			this.clazz = (Class<? extends Object>) enMeth.invoke(constraintAnnotation, new Object[] {});
+			Method proMeth = constraintAnnotation.getClass().getDeclaredMethod("property", new Class[] {});
+			proMeth.setAccessible(true);
+			this.property = (String) proMeth.invoke(constraintAnnotation, new Object[] {});
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("username  Unique Validation Init...");
+	}
+	/**
+	 * 用戶名作唯一校驗
+	 * @param value
+	 * @param context
+	 * @return	
+	 */
+	@Override
+	public boolean isValid(Object value, ConstraintValidatorContext context) {
+		try {
+			DataObject userDo = new DataObject(User.class);
+			userDo.set("USERNAME", value);
+			userDo=DatabaseUtils.expandEntity("default", userDo);
+			if(userDo.getBean()!=null) {
+				return false;
+			}else {
+				return true;
+			}
+			//return userService.isUsernameUnique((String)value);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+}

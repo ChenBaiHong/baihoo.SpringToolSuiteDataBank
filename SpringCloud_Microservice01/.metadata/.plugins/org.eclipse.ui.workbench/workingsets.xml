@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workingSetManager>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1530943137492_0" label="microservice-spring-cloud" name="microservice-spring-cloud">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/microservice-consumer-movie-ribbon-without-eureka" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/microservice-consumer-movie-ribbon-customizing-properties" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/microservice-provider-user" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/microservice-consumer-movie-ribbon" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/microservice-consumer-movie" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/microservice-consumer-movie-feign" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/microservice-provider-goods" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/microservice-discovery-eureka" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/microservices-pring-cloud" type="4"/>
+</workingSet>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1530943504675_1" label="Window Working Set" name="Aggregate for window 1530943504675"/>
+</workingSetManager>

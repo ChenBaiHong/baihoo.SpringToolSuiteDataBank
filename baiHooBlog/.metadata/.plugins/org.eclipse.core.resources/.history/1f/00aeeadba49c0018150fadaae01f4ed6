@@ -1,0 +1,5 @@
+#server 上下文路径
+server:
+  servlet:
+    path: /upload
+  port: 8989

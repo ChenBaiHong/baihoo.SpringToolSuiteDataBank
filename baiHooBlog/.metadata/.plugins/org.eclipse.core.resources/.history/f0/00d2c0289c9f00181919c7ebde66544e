@@ -1,0 +1,30 @@
+package com.baihoo.blog.validator.UserValidator;
+
+/**
+ * 控制是否对字段进行唯一校验
+ * @author Administrator
+ *
+ */
+public class UniqueValidateControl<T> {
+	/**
+	 * @param bean 实体表
+	 * @param uniquefield  实体表唯一约束字段
+	 * @param isvalidate 是否唯一约束， 默认是true,要唯一约束
+	 */
+	private T bean ; 
+	private String uniquefield;
+	private boolean isvalidate = true;
+	/**
+	 * 构造函数私有化
+	 */
+	private UniqueValidateControl() {
+		
+	}
+	public UniqueValidateControl(T bean, String uniquefield, boolean isvalidate) {
+		super();
+		this.bean = bean;
+		this.uniquefield = uniquefield;
+		this.isvalidate = isvalidate;
+	}
+	
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div data-th-fragment="footer">
+    Powered by  <a href="https://baihoo.com">baihoo.com</a>
+</div>
+
+<!-- =================================js文件================================= -->
+<script src="../../static/html/jQuery/jquery3.2.1.min.js"
+	th:src="@{/html/jQuery/jquery3.2.1.min.js}"></script>
+<script src="../../static/html/bootstrap/js/bootstrap.min.js"
+	th:src="@{/html/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript"
+	src="../../static/html/bootstrap/js/bootstrap-datetimepicker.js"
+	th:src="@{/html/bootstrap/js/bootstrap-datetimepicker.js}"
+	charset="UTF-8"></script>
+<script type="text/javascript"
+	src="../../static/html/bootstrap/js/locales/bootstrap-datetimepicker.zh-CN.js"
+	th:src="@{/html/bootstrap/js/locales/bootstrap-datetimepicker.zh-CN.js}"
+	charset="UTF-8"></script>
+</body>
+</html>

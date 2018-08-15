@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="avatarApi" key="selection"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="true" key="wrap"/>
+		<item value="false" key="wholeword"/>
+		<list key="findhistory">
+			<item value="avatarApi"/>
+			<item value="avatarformid"/>
+			<item value="convertBase64UrlToBlob"/>
+			<item value="avatarFormContainer"/>
+			<item value="crop"/>
+			<item value="blog-edit-avatar"/>
+			<item value="modal"/>
+			<item value="&quot;blog-edit-avatar&quot;"/>
+			<item value="fileServerUrl"/>
+			<item value="totalCount"/>
+			<item value="tbpage-total-elements "/>
+			<item value="type=&quot;text&quot;"/>
+			<item value="numbers.sequence"/>
+			<item value="criteriaChain"/>
+			<item value="criteria"/>
+		</list>
+		<list key="replacehistory">
+			<item value="meCriteria"/>
+			<item value=".bh-button"/>
+			<item value="bh-button"/>
+			<item value="bh-modal"/>
+			<item value="bh-model"/>
+			<item value="width: 60px;"/>
+			<item value=""/>
+			<item value="/userspace"/>
+			<item value="/favicon.ico"/>
+			<item value="com.baihoo.blog"/>
+			<item value="userService"/>
+			<item value="Object"/>
+			<item value="baihoo"/>
+			<item value="/userspace/bloguser"/>
+			<item value="/userspace/baihoo"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="300" key="DIALOG_WIDTH"/>
+		<item value="1|Microsoft YaHei UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Microsoft YaHei UI" key="DIALOG_FONT_NAME"/>
+		<item value="410" key="DIALOG_HEIGHT"/>
+		<item value="1639" key="DIALOG_X_ORIGIN"/>
+		<item value="72" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>

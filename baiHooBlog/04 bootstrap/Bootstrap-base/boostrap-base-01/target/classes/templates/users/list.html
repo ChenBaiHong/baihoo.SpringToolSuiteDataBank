@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<!-- 引用替换当前的头部信息html 
+	曲义解释：
+		引用header.html 定义的 header片段
+-->
+<head th:replace="~{fragments/header :: header}">
+	<meta charset="UTF-8">
+</head>
+<body>
+	<!-- page content -->
+	<div class="container blog-content-container">
+		<h3 th:text="${userModel.title}">原型效果 baihoo</h3>
+		<div>
+			<a class="btn btn-default" href="/user/form.html" th:href="@{/user/form}">创建用户</a>
+		</div>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<td>ID</td>
+					<td>Email</td>
+					<td>用户名</td>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- 判断userModel.userList 是否没有值 -->
+				<tr th:if="${userModel.userList.size() eq 0}">
+					<td colspan="3">没有用户信息！</td>
+				</tr>
+
+				<!-- th:each 迭代 -->
+				<tr th:each="user : ${userModel.userList}">
+					<td th:text="${user.id}"></td>
+					<td th:text="${user.email}"></td>
+					<td>
+						<!-- 带参数的连接 --> <a href="view/view.html"
+						th:href="@{'/user/view/'+${user.id}}" th:text="${user.name}"></a>
+					</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

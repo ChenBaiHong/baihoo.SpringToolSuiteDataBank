@@ -1,0 +1,10 @@
+package com.baihoo.blog.validator.UserValidator;
+
+/**
+ * 控制是否对字段进行唯一校验
+ * @author Administrator
+ *
+ */
+public class UniqueValidateControl {
+
+}

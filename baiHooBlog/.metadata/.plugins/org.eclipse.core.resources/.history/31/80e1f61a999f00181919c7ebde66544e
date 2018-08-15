@@ -1,0 +1,19 @@
+package com.baihoo.blog.doj;
+
+import javax.persistence.Column;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
+import com.baihoo.blog.anno.UsernameUnique;
+import com.baihoo.blog.domain.User;
+
+/**
+ * 用户延申扩展实体
+ * @author Administrator
+ *
+ */
+
+public class UserDoj extends User {
+
+
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	th:fragment="header">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- CSRF -->
+	<meta name="_csrf" th:content="${_csrf.token}"/>
+	<!-- default header name is X-CSRF-TOKEN -->
+	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+<title>baihoo in action</title>
+
+<!-- Tether core CSS -->
+<link href="../../static/bootstrap/css/tether.min.css"
+	th:href="@{/bootstrap/css/tether.min.css}" rel="stylesheet">
+<!-- bootstrap css样式 -->
+<link href="../../static/bootstrap/css/bootstrap.min.css"
+	th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+<!-- 样式文字css样式 -->
+<link href="../../static/bootstrap/css/font-awesome.min.css" th:href="@{/bootstrap/css/font-awesome.min.css}" 
+	rel="stylesheet">
+<link href="../../static/bootstrap/css/nprogress.css" th:href="@{/bootstrap/css/nprogress.css}" 
+	rel="stylesheet">
+<link href="../../static/bootstrap/css/thinker-md.vendor.css" th:href="@{/bootstrap/css/thinker-md.vendor.css}" 
+	rel="stylesheet">
+<link href="../../static/bootstrap/css/bootstrap-tagsinput.css" th:href="@{/bootstrap/css/bootstrap-tagsinput.css}" 
+	rel="stylesheet">
+<link href="../../static/bootstrap/css/component-chosen.min.css" th:href="@{/bootstrap/css/component-chosen.min.css}" 
+	rel="stylesheet">
+<link href="../../static/bootstrap/css/toastr.min.css" th:href="@{/bootstrap/css/toastr.min.css}" 
+	rel="stylesheet">
+<!-- 图片编辑的css -->
+<link href="../../static/bootstrap/css/cropbox.css" th:href="@{/bootstrap/css/cropbox.css}" 
+	rel="stylesheet">
+<!-- 自定义的样式 -->
+<link href="../../static/bootstrap/css/style.css" th:href="@{/bootstrap/css/style.css}" 
+	rel="stylesheet">
+<link href="../../static/bootstrap/css/thymeleaf-bootstrap-paginator.css" th:href="@{/bootstrap/css/thymeleaf-bootstrap-paginator.css}"
+	rel="stylesheet">
+<link href="../../static/bootstrap/css/blog.css" th:href="@{/bootstrap/css/blog.css}" 
+	rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-inverse bg-inverse navbar-toggleable-md">
+    <div class="container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarsContainer" aria-controls="navbarsExampleContainer" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+       <a class="navbar-brand" href="/" th:href="@{~/}">baiHoo Blog</a>
+
+        <div class="collapse navbar-collapse" id="navbarsContainer">
+
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/blogs/listBlogs?order=new&keyword=1">最新 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/blogs/listBlogs?order=hot&keyword=2">最热</a>
+                </li>
+				<form class="form-inline mt-2 mt-md-0">
+					<input class="form-control mr-sm-2" type="text" placeholder="搜索">
+					<a href="/search?condition=www"
+						class="btn btn-outline-secondary my-2 my-sm-0">
+						<i class="fa fa-search" aria-hidden="true"></i></a>
+				</form>
+			</ul>
+			<!--
+					曲義解釋： 
+						授權認證--已認證，并证明是真实的、可靠的。用戶已登陸 
+			-->
+			<div sec:authorize="isAuthenticated()" class="row"> 
+				<div class="dropdown" >
+					<a class="dropdown-toggle" href="/userspace/baihoo" th:href="@{'/userspace/'+${#authentication.name}}" data-toggle="dropdown">
+						<span sec:authentication="name"></span>
+					</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="/userspace/baihoo" th:href="@{'/userspace/'+${#authentication.name}}">个人主页</a>
+						<a class="dropdown-item" href="/userspace/baihoo/profile" th:href="@{'/userspace/'+${#authentication.name}+'/profile'}">个人设置</a>
+					</div>
+						<form class="dropdown-item" action="/logout"
+							th:action="@{~/logout}" method="post">
+							<!-- 
+							logout在我編寫的controller是沒有的，該logout遵循springSecurity本身規則的，注銷用戶
+							 -->
+							<input class="btn btn-outline-success " type="submit" value="退出"
+								style="border: navajowhite;">
+						</form>
+					</div>
+			</div>
+			<!-- 
+					曲義解釋：
+						授權認證--未認證，匿名未登陸的
+			-->
+			<div sec:authorize="isAnonymous()">
+	           <!--  baihoo修改待定 -->
+	            <a href="/login" th:href="@{~/login}" class="btn btn-outline-success my-2 my-sm-0" type="submit">登录</a>
+	            <a href="/register" th:href="@{~/register}" class="btn btn-outline-success my-2 my-sm-0" type="submit">注册</a>
+	           <!--  //baihoo修改待定 -->
+			</div>
+        </div>
+    </div>
+</nav>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"> 
+      <!-- thymeleaf模板集合springsecurity標簽權限控制，的命名空間 -->
+      
+<!-- 引用替换当前的头部信息html 
+	曲义解释：
+		引用header.html 定义的 header片段
+-->
+<head th:replace="~{fragments/header :: header}">
+	<meta charset="UTF-8">
+</head>
+<body>
+	<!-- page content -->
+	<div class="container blog-content-container">
+		<!--
+			曲義解釋： 
+				授權認證--已認證，并证明是真实的、可靠的。用戶已登陸 -->
+		<div sec:authorize="isAuthenticated()">
+			<p>已有用戶登陸</p>
+			<p>登陸用戶：<span sec:authentication="name"></span></p>
+			<!-- principal：主要演员，主角; 表示顯示用戶角色 -->
+			<p>用戶角色：<span sec:authentication="principal.authorities"></span></p>
+		</div>
+		<!-- 
+			曲義解釋：
+				授權認證--未認證，匿名未登陸的
+		 -->
+		<div sec:authorize="isAnonymous()">
+			<p>用戶未登陸</p>
+		</div>
+	</div>
+	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

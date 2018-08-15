@@ -1,0 +1,35 @@
+《====================================================================================》
+后台编码
+	安全配置类
+	控制器
+	
+前端编码
+	index.html
+	header.html
+	login.html
+	
+运行
+	访问：http://localhost:8080/user
+《====================================================================================》
+
+問題：
+	pom.xml 中---- thymeleaf-extras-springsecurity4 
+			該jar必須手動引入
+			
+	com.baihoo.bootstrap.config.SecurityConfig.configureGlobal(AuthenticationManagerBuilder) -----該方法執行過程注意！！
+	
+	
+《====================================================================================》
+Spring Security 5 新增加了多种密码加密方式。
+		当前版本5新增支持加密方式：
+		bcrypt - BCryptPasswordEncoder (Also used for encoding)
+		ldap - LdapShaPasswordEncoder
+		MD4 - Md4PasswordEncoder
+		MD5 - new MessageDigestPasswordEncoder("MD5")
+		noop - NoOpPasswordEncoder
+		pbkdf2 - Pbkdf2PasswordEncoder
+		scrypt - SCryptPasswordEncoder
+		SHA-1 - new MessageDigestPasswordEncoder("SHA-1")
+		SHA-256 - new MessageDigestPasswordEncoder("SHA-256")
+		sha256 - StandardPasswordEncoder
+	

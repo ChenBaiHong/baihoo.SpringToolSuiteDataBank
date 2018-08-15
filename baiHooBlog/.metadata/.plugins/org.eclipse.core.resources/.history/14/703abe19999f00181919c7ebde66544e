@@ -1,0 +1,25 @@
+package com.baihoo.blog.doj;
+
+import javax.persistence.Column;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
+import com.baihoo.blog.anno.UsernameUnique;
+import com.baihoo.blog.domain.User;
+
+/**
+ * 用户延申扩展实体
+ * @author Administrator
+ *
+ */
+
+public class UserDoj extends User {
+
+
+	@NotEmpty(message = "{User.username.notnull}")
+	@Size(min=3, max=20)
+	@Column(name="USERNAME" , nullable = false, length = 55, unique = true)
+	@UsernameUnique(entity = User.class , property="username")
+	private String username; 
+
+}

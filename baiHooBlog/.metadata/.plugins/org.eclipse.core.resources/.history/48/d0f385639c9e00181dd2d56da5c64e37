@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<div class="button">
+		<button>
+			<span>Click Me</span>
+		</button>
+	</div>
+	<div data-th-fragment="imgmodel" class="pop-up">
+		<div class="content">
+			<div class="container">
+				<div class="dots">
+					<div class="dot"></div>
+					<div class="dot"></div>
+					<div class="dot"></div>
+				</div>
+
+				<span class="close">close</span>
+
+				<div class="title">
+					<h1>subscribe</h1>
+				</div>
+
+				<img src="http://jq22.qiniudn.com/cXsiNryL.png" alt="Car">
+
+				<div class="subscribe">
+					<h1>
+						Subscribe to get the latest <span>news & updates</span>.
+					</h1>
+
+					<form>
+						<input type="email" placeholder="Your email address"> <input
+							type="button" value="Subscribe">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

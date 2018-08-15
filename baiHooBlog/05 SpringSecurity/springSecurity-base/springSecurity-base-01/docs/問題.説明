@@ -1,0 +1,22 @@
+《==============================================================================》
+異常1、
+	異常：There is no PasswordEncoder mapped for the id "null"
+	
+	解決辦法：
+		security配置中添加該方法
+		com.baihoo.bootstrap.config.SecurityConfig.passwordEncoder() 
+
+《==============================================================================》
+異常2、	
+	異常2.1：不基於數據庫用戶，和角色。spring security的账户锁定 “User account is locked”，該異常 《異常1》 是前呼後應
+		針對---> spring-security-5.0.0 以上版本
+		使用這個類 NoOpPasswordEncoder 進行不需要密碼加密
+	-------------------------------------------------------------------------------------------------------------	
+	異常2.2: 基於數據庫用戶，和角色。spring security的账户锁定 “User account is locked”
+		user 實現 UserDetails 接口，重寫其方法！這是必須
+		authority 實現 GrantedAuthority 接口，重寫其方法！這是必須
+		
+		注意：密碼加密必須和springSecurity的安全配置類（com.baihoo.bootstrap.config.SecurityConfig）初始化其接口 PasswordEncoder 向下轉型的子類保持一致
+		
+《==============================================================================》	
+		springSecurity5.0.0以後角色是角色，權限是權限，兩者不能混爲一談

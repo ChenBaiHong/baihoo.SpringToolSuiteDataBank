@@ -1,0 +1,19 @@
+#server 上下文路径
+server: 
+  port: 8989
+  address: 127.0.0.1
+#配置thymeleaf
+spring:
+  thymeleaf:
+    encoding:  UTF-8
+    cache: false
+    mode: HTML5
+#分割文件上载大小
+  servlet:
+    multipart:
+      max-file-size: 1024KB
+      max-request-size: 1024KB
+# 自定义独立配置 MongoDB 服务
+#  data:
+#    mongodb:
+#      uri: http://localhost:27017

@@ -1,0 +1,10 @@
+$('.bh-button').click(function(){
+  $('.pop-up').addClass('open');
+});
+$('.blog-view-file').click(function(){
+	 var fileId = this.attr("fileId");
+	  $('.pop-up').addClass('open');
+});
+$('.pop-up .close').click(function(){
+  $('.pop-up').removeClass('open');
+});

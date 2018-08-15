@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header}">
+</head>
+    <body>
+
+    <div class="container blog-content-container">
+		<!-- 
+		login在我們編寫的controller中是只是做跳轉頁的url ， 并不對登陸用戶做實際操作，該login遵循springSecurity本身規則的，登陸用戶
+		 -->
+		<form  th:action="@{/login}" method="post">
+			<h2 >请登录</h2>
+			
+			<div class="form-group col-md-5">
+				<label for="username" class="col-form-label">账号</label>
+				<input type="text" class="form-control" id="username" name="username" maxlength="50" placeholder="请输入账号">
+	 
+			</div>
+			<div class="form-group col-md-5">
+				<label for="password" class="col-form-label">密码</label>
+				<input type="password" class="form-control" id="password" name="password" maxlength="30" placeholder="请输入密码" >
+			</div>
+			<div class="form-group col-md-5">
+				 <input type="checkbox" value="remember-me"> 记住我
+			</div>
+			<div class="form-group col-md-5">
+				<button type="submit" class="btn btn-primary">登录</button>
+			</div>
+ 			<div class=" col-md-5" th:if="${loginError}">
+				<p class="blog-label-error" th:text="${errorMessage}"></p>
+			</div>
+		</form>
+    </div> <!-- /container -->
+ 
+	
+	<div th:replace="~{fragments/footer :: footer}">...</div>
+    </body>
+</html>

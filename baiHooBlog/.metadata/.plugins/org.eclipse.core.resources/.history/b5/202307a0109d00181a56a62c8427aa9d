@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	data-th-fragment="header">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	href="../../static/html/bootstrap/css/bootstrap.min.css"
+	th:href="@{/html/bootstrap/css/bootstrap.min.css}" />
+<link rel="stylesheet"
+	href="../../static/html/bootstrap/css/bootstrap-responsive.min.css"
+	th:href="@{/html/bootstrap/css/bootstrap-responsive.min.css}" />
+<link
+	href="../../static/html/bootstrap/css/bootstrap-datetimepicker.min.css"
+	th:href="@{/html/bootstrap/css/bootstrap-datetimepicker.min.css}"
+	rel="stylesheet" media="screen">
+<style type="text/css">
+
+.m-nav, .m-nav * {
+    box-sizing: border-box;
+}
+.m-nav, .m-nav * {
+    -webkit-overflow-scrolling: touch;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.m-nav {
+    z-index: 100000;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    flex-direction: column;
+    font-family: 'Akzidenz Grotesk BQ Light';
+}
+.m-nav-flex-y, .m-nav-flex-x, .m-nav-flex-xy, .m-nav-flex-space {
+    display: flex;
+    flex-wrap: wrap;
+}
+.m-nav-flex-xy, .m-nav-flex-y {
+    align-items: center;
+}
+</style>
+<title>MongoDB 文件服务器</title>
+</head>
+<body>
+	<nav class="m-nav m-nav-flex-y" style="">
+		<div class="m-nav-middle">
+			<ul class="m-nav-flex-space">
+				<a href="https://www.mongodb.com" class="m-nav-flex-y"><li
+					class="m-nav-logo"><img
+						src="https://webassets.mongodb.com/_com_assets/global/mongodb-logo-white.png"></li>
+				<li class="m-nav-tagline">文件服务器</li></a>
+				<div class="m-nav-middle-lists m-nav-flex-xy" style="">
+					<li class="m-nav-middle-li "><a href="/products/overview">首页</a></li>
+					<li class="m-nav-middle-li "><a href="/cloud">Cloud</a></li>
+					<li class="m-nav-middle-li "><a href="/company">About Baihoo</a></li>
+				</div>
+			</ul>
+		</div>
+	</nav>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="/"></a>
+		</div>
+		<div>
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="/"></a></li>
+				<li class=""><a href="/">首页</a></li>
+			</ul>
+		</div>
+	</nav>
+</body>
+</html>

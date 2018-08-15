@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<!-- 引用替换当前的头部信息html 
+	曲义解释：
+		引用header.html 定义的 header片段
+-->
+<head th:replace="~{fragments/header :: header}">
+<meta charset="UTF-8">
+</head>
+<body>
+	<!-- page content -->
+	<div class="container blog-content-container">
+		<h3 th:text="${userModel.title}">原型效果 baihoo</h3>
+		<div>
+			<p>
+				<strong>Id:</strong>&nbsp;&nbsp;<span th:text="${userModel.user.id}"></span>
+			</p>
+			<p>
+				<strong>name:</strong>&nbsp;&nbsp;<span
+					th:text="${userModel.user.name}"></span>
+			</p>
+			<p>
+				<strong>email:</strong>&nbsp;&nbsp;<span
+					th:text="${userModel.user.email}"></span>
+			</p>
+		</div>
+		<div>
+			<a th:href="@{'/user/modify/'+${userModel.user.id}}">修改用戶</a>&nbsp;&nbsp;
+			<a th:href="@{'/user/delete/'+${userModel.user.id}}">刪除用戶</a>
+		</div>
+	</div>
+	<div>
+		<div th:replace="~{fragments/footer :: footer}"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+
+《==================================================================================》
+	baihooBlog-prototype 控制器
+		MainController.java
+		BlogController.java
+		UserspaceController.java
+		AdminController.java
+		UserController.java
+		
+《==================================================================================》
+	baihooBlog-prototype 界面
+	
+《==================================================================================》
+	index: 主頁，含最新，最熱文章，最熱標簽，最熱用戶
+		/Blogs : Get
+			order: 排序類型 ， new/hot ,默認是new
+			keyword: 搜索關鍵字。博客的標簽，即爲關鍵字
+			async：是否異步請求頁面 
+			pageIndex
+			pageSize
+		
+	user space：用戶空間主頁空間
+		/userspace/{username} : GET 具體某個用戶的主頁
+			username : 用戶賬號
+			
+		/userspace/{username}/profile : post 保存個人設置
+			username : 用戶賬號
+			User : 待保存的對象 
+			
+		/userspace/{username}/avatar ：GET獲取個人頭像
+			username : 用戶賬號
+			
+		/userspace/{username}/blogs : GET 查詢用戶博客，以下三個條件任選一個
+			order: 排序類型 ， new / hot , 默認是 new
+			catalog : 博客分類Id , 默認是空
+			keyword: 搜索關鍵字。博客的標簽，即為關鍵字
+			async: 是否異步請求頁面
+			pageindex
+			pagesize
+			
+		/userspace/{username}/blogs/edit: GET 獲取新增博客的界面
+			username: 用戶賬號
+				
+		/userspace/{username}/blogs/edit: POST  新增,編輯博客的界面
+			username: 用戶賬號
+			Blog : 帶保存的博客對象
+			
+		/userspace/{username}/blogs/edit/{id}: GET 編輯某篇博客的界面
+			username: 用戶賬號
+			id : 博客對象id	
+			
+		/userspace/{username}/blogs/edit/{id}: DELETE 刪除某篇博客的界面
+			username: 用戶賬號
+			id : 博客對象id		
+《==================================================================================》
+	login: 登陸
+		/login: POST 登陸
+			username: 用戶賬號
+			password: 用戶密碼
+			remember-me: 是否記住我
+	register： 注冊
+		/register: GET 獲取注冊的界面
+		/register: POST 注冊，注冊成功跳轉之登陸界面
+		
+	users: 用戶管理
+		/users : GET 用戶列表
+			async : 是否異步請求頁面
+			pageIndex 
+			pageSize
+			name: 用戶名稱的關鍵字
+			
+		/users/add : GET 獲取用戶新增頁面
+		
+		/users: POST 保存用戶
+			user: 待保存用戶信息
+			authorityId : 角色 ID
+			
+		/users/edit/{id}: GET 獲取具體某個用戶編輯界面
+			id: 某個用戶的id
+			
+《==================================================================================》
+		comments : 評論管理
+			/comments: GET 獲取評論列表
+				blogId : 博客ID
+				
+			/comments: POST 保存評論
+				blogId : 博客ID
+				commentContent : 评论内容
+				
+			/comments/{id}: delete 删除評論
+				blogId : 博客ID
+				commentContent : 评论内容
+				
+《==================================================================================》
+		votes : 點贊管理
+			/votes: post 保存點贊
+				Id
+				blogId : 博客ID
+			/votes/{id}: delete 刪除點贊
+				Id
+				blogId : 博客ID
+《==================================================================================》
+		catalogs : 分類管理
+			/catalogs: GET 獲取用戶分類列表
+				username: 用戶賬號 
+				。。。
+		
+		
+		
